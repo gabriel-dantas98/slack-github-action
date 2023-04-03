@@ -62,6 +62,8 @@ module.exports = async function slackSend(core) {
 
     if (typeof botToken !== 'undefined' && botToken.length > 0) {
       const message = core.getInput('slack-message') || '';
+      const username = core.getInput('username') || '';
+      const iconURL = core.getInput('icon-url') || '';
       const channelIds = core.getInput('channel-id') || '';
       const web = new WebClient(botToken);
 
@@ -78,7 +80,7 @@ module.exports = async function slackSend(core) {
             webResponse = await web.chat.update({ ts, channel: channelId.trim(), text: message, ...(payload || {}) });
           } else {
           // post message
-            webResponse = await web.chat.postMessage({ channel: channelId.trim(), text: message, ...(payload || {}) });
+            webResponse = await web.chat.postMessage({username: username, icon_url: iconURL, channel: channelId.trim(), text: message, ...(payload || {}) });
           }
         }));
       } else {
