@@ -13,6 +13,9 @@ inputs:
   icon-url:
     required: false
     description: 'Icon used in Bot Token message.'
+  username:
+    required: false
+    description: 'Optional username to override default Slack APP name.'
   payload-file-path: # path to JSON payload to send to Slack via webhook
     description: 'path to JSON payload to send to Slack if webhook route. If not supplied, json from GitHub event will be sent instead. If payload is provided, it will take preference over this field'
     required: false
